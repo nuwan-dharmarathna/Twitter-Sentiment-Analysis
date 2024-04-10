@@ -14,7 +14,7 @@ with open('./artifacts/vocab.txt', 'r') as file:
 print("vocab read sucessfully!")
 
 # load the model
-# model = tf.keras.models.load_model('senti_model.h5')
+model = tf.keras.models.load_model('senti_model.h5')
 
 # vectorization
 from sklearn.feature_extraction.text import CountVectorizer
@@ -46,16 +46,15 @@ def get_prediction(text):
   preprocessed_txt = preprocessing(text)
   vectorized_txt = cv.transform(preprocessed_txt)
 
-#   result = model.predict(vectorized_txt)
-#   print(result)
+  result = model.predict(vectorized_txt)
+  
+  # Since it's binary classification, you can round the prediction to get the class label (0 or 1)
+  predicted_class = np.round(result).astype(int)[0][0]
 
-#   # Since it's binary classification, you can round the prediction to get the class label (0 or 1)
-#   predicted_class = np.round(result).astype(int)[0][0]
-
-#   if predicted_class == 1:
-#     return 'Positive Comment'
-#   else:
-#     return "Negative Comment"
+  if predicted_class == 1:
+    return "Positive Comment"
+  else:
+    return "Negative Comment"
 
 
 # New test value

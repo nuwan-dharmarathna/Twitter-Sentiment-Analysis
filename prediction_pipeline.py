@@ -1,4 +1,9 @@
-import tensorflow as tf
+# import tensorflow as tf
+import numpy as np
+import pandas as pd
+import re
+import string
+import pickle
 
 import re
 import nltk
@@ -14,7 +19,11 @@ with open('./artifacts/vocab.txt', 'r') as file:
 print("vocab read sucessfully!")
 
 # load the model
-model = tf.keras.models.load_model('senti_model.h5')
+# model = tf.keras.models.load_model('senti_model.h5')
+
+# load model
+with open('model.pickle', 'rb') as f:
+    model = pickle.load(f)
 
 # vectorization
 from sklearn.feature_extraction.text import CountVectorizer
@@ -48,19 +57,21 @@ def get_prediction(text):
 
   result = model.predict(vectorized_txt)
   
+  print(result)
+  
   # Since it's binary classification, you can round the prediction to get the class label (0 or 1)
-  predicted_class = np.round(result).astype(int)[0][0]
+  # predicted_class = np.round(result).astype(int)[0][0]
 
-  if predicted_class == 1:
+  if result == 1:
     return "Positive Comment"
   else:
     return "Negative Comment"
 
 
-# New test value
-test = "love you"
-pre_test = preprocessing(test)
-print(pre_test)
+# # New test value
+# test = "Fuck you"
+
+
 # res = get_prediction(test)
 
 # print(res)

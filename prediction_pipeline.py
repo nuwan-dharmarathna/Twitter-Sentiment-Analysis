@@ -56,22 +56,8 @@ def get_prediction(text):
   vectorized_txt = cv.transform(preprocessed_txt)
 
   result = model.predict(vectorized_txt)
-  
-  print(result)
-  
-  # Since it's binary classification, you can round the prediction to get the class label (0 or 1)
-  # predicted_class = np.round(result).astype(int)[0][0]
-
+    
   if result == 1:
     return "Positive Comment"
   else:
     return "Negative Comment"
-
-
-# # New test value
-# test = "Fuck you"
-
-
-# res = get_prediction(test)
-
-# print(res)

@@ -12,9 +12,10 @@ def index():
 
 @app.route('/', methods=['post'])
 def my_post():
-    text = request.form["text"]
-    print(text)
-    result = get_prediction(text)
+    comment = request.form["text"]
+    result = get_prediction(comment)
+    
+    global data
     
     if result == 'Negative Comment':
         data = 'Negative Comment 👎'

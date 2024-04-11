@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect
 
 from prediction_pipeline import get_prediction
 
-data  = 'print weyan hutto'
+data  = '--Your Comment Status--'
 
 app = Flask(__name__)
 

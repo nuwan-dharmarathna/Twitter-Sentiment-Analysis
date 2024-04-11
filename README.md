@@ -25,4 +25,4 @@ The sentiment analysis model achieved an accuracy of 79% from Logestic Regressio
 - Sentiment prediction (positive/negative) using the trained model
 - Displaying the prediction result to the user
 
-![Web Interface][web_interface.png]
+[Web Interface][web_interface.png]

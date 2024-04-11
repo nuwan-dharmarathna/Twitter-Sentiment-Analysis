@@ -25,4 +25,4 @@ The sentiment analysis model achieved an accuracy of 79% from Logestic Regressio
 - Sentiment prediction (positive/negative) using the trained model
 - Displaying the prediction result to the user
 
-[Web Interface][/web_interface.png]
+<img width="849" alt="Screenshot 2024-04-11 at 09 15 36" src="https://github.com/nuwan-dharmarathna/Twitter-Sentiment-Analysis/assets/137724808/f246c30d-a00f-4b40-83c4-b1ea22d09ef4">

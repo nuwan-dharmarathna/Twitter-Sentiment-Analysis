@@ -22,7 +22,7 @@ print("vocab read sucessfully!")
 # model = tf.keras.models.load_model('senti_model.h5')
 
 # load model
-with open('model.pickle', 'rb') as f:
+with open('static/model/model.pickle', 'rb') as f:
     model = pickle.load(f)
 
 # vectorization

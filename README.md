@@ -8,7 +8,7 @@ This project is a sentiment analysis tool developed in Python, utilizing the NLT
 
 The sentiment analysis model was trained on the Twitter sentiment analysis dataset from kaggle.
 
-link - [text](https://www.kaggle.com/datasets/kazanova/sentiment140)
+link - [for the dataset](https://www.kaggle.com/datasets/kazanova/sentiment140)
 
 ## Model Accuracy
 

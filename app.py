@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, jsonify, redirect, render_template, request
 
 from prediction_pipeline import get_prediction
+from xquik_export import load_xquik_rows
 
 from logger import logging
 
@@ -29,6 +30,21 @@ def my_post():
         data = 'Positive Comment 👍'
     
     return redirect(request.url)
+
+
+@app.route('/xquik-export', methods=['POST'])
+def analyze_xquik_export():
+    rows = load_xquik_rows(request.get_data())
+    results = [
+        {
+            "tweet": row["tweet"],
+            "sentiment": get_prediction(row["tweet"]),
+            "created_at": row["created_at"],
+            "username": row["username"],
+        }
+        for row in rows
+    ]
+    return jsonify({"count": len(results), "results": results})
 
 
 if __name__ == "__main__":

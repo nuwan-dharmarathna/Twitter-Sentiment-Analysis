@@ -1,32 +1,19 @@
-# import tensorflow as tf
-import numpy as np
-import pandas as pd
-import re
-import string
 import pickle
-
 import re
-import nltk
+from pathlib import Path
 
-# nltk.download('stopwords')
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
-  
-# open vocab.txt as tokens
-with open('./artifacts/vocab.txt', 'r') as file:
-  tokens = file.read().splitlines()
-  
-print("vocab read sucessfully!")
-
-# load the model
-# model = tf.keras.models.load_model('senti_model.h5')
-
-# load model
-with open('static/model/model.pickle', 'rb') as f:
-    model = pickle.load(f)
-
-# vectorization
 from sklearn.feature_extraction.text import CountVectorizer
+
+ROOT = Path(__file__).resolve().parent
+
+with (ROOT / 'artifacts' / 'vocab.txt').open() as file:
+  tokens = file.read().splitlines()
+
+with (ROOT / 'static' / 'model' / 'model.pickle').open('rb') as file:
+  model = pickle.load(file)
+
 cv = CountVectorizer(vocabulary=tokens)
   
 # Text preprocessing
@@ -47,16 +34,12 @@ def preprocessing(sent):
   review = ' '.join(review)
   return [review]
 
-# vectoried the pre-processed text
-
-import numpy as np
-
 def get_prediction(text):
   preprocessed_txt = preprocessing(text)
   vectorized_txt = cv.transform(preprocessed_txt)
 
-  result = model.predict(vectorized_txt)
-    
+  result = model.predict(vectorized_txt)[0]
+
   if result == 1:
     return "Positive Comment"
   else:
